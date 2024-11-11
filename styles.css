@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+h1 {
+  margin: 0; 
+  padding: 0 20px; 
+  text-align: center; 
+  flex-grow: 1; 
+}
+
+.image-left, .image-right {
+  width: 150px; 
+  height: auto;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+}
+.left-panel {
+  width: 60%;
+}
+
+.editor-container {
+  display: flex;
+}
+.line-numbers {
+  background-color: #f0f0f0;
+  color: #888;
+  padding: 10px;
+  text-align: right;
+  font-family: monospace;
+  white-space: nowrap;
+
+  width: 50px;
+
+  border-right: 1px solid #ddd;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box; 
+}
+#codeArea {
+  width: 100%;
+  min-height: 500px;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.right-panel {
+  width: 40%;
+  background-color: #eaeaea;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#ErrorArea {
+  width: 100%;
+  height: 200px;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th,
+td {
+  padding: 8px;
+  width: 33%;
+  border: 1px solid #ddd;
+}
+
+thead th {
+  background-color: #8e44ad;
+  color: white;
+  text-align: center;
+}
+
+tbody td {
+  background-color: #fff;
+  text-align: left;
+}
+.table-container {
+  min-height: 480px;
+  overflow-y: auto;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+button {
+  flex: 1;
+  padding: 10px;
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6f3482;
+}
