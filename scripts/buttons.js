@@ -22,14 +22,17 @@ function compilar() {
     "RANGE",
     "INPUT",
   ];
-  const regex = /\b(\w+)\b/g;
+  //const regex = /\b(\w+)\b/g;
+    const regex = /\b(\W{0,2}\w+)\b/g;
 
   lines.forEach((line, lineIndex) => {
     let match;
     while ((match = regex.exec(line)) !== null) {
       const token = match[0];
-      let tipo = "Identificador";
+      console.log(match)
+      let tipo = "error";
 
+      if (token.trim()[0] === '$') tipo = "Identificador";
       if (keywords.includes(token)) tipo = "Palabra Clave";
       if (!isNaN(token)) tipo = "Número";
 
