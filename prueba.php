@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pseudo Compilador Compilador - LyA II</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .editor {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            outline: none;
+        }
+        .keyword {
+            color: #007bff; /* Color para las palabras reservadas */
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,6 +36,7 @@
             <div class="editor-container">
                 <div class="line-numbers" id="lineNumbers"></div>
                 <textarea id="codeArea" placeholder="Escribe tu código aquí..."></textarea>
+
             </div>
             <div class="buttons">
                 <button onclick="compilar()">Compilar</button>

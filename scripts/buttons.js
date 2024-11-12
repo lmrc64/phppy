@@ -12,15 +12,16 @@ function compilar() {
   // Simulación de análisis de tokens (básico)
   const lines = code.split("\n");
   const keywords = [
-    "INT",
-    "FLOAT",
-    "STRING",
-    "IF",
-    "WHILE",
-    "FOR",
-    "IN",
-    "RANGE",
-    "INPUT",
+    "if",
+    "elseif",
+    "else",
+    "while",
+    "for",
+    "break",
+    "echo",
+    "fscan",
+    "return",
+    "this",
   ];
   //const regex = /\b(\w+)\b/g;
     const regex = /\b(\W{0,2}\w+)\b/g;
