@@ -24,25 +24,40 @@
 </head>
 
 <body>
-    <div class="header">
-        <img src="./img/LOGO-VERTICAL-TECNM.png" alt="Imagen 1" class="image-left">
-        <h1>Pseudo Compilador - Lenguajes y Automas II</h1>
-        <img src="./img/LogoTecCelaya.png" alt="Imagen 2" class="image-right">
-    </div>
+    
     <br>
     <div class="container">
         <!-- Panel de código -->
+         
         <div class="left-panel">
-            <div class="editor-container">
-                <div class="line-numbers" id="lineNumbers"></div>
-                <textarea id="codeArea" placeholder="Escribe tu código aquí..."></textarea>
-
-            </div>
-            <div class="buttons">
-                <button onclick="compilar()">Compilar</button>
+        <div class="header">
+        <img src="./img/LOGO-VERTICAL-TECNM.png" alt="Imagen 1" class="image-left">
+        <h1>Pseudo Compilador - Lenguajes y Automas II</h1>
+        <img src="./img/LogoTecCelaya.png" alt="Imagen 2" class="image-right">
+        </div>
+            <div class="buttons-nav">
                 <button onclick="limpiar()">Nuevo</button>
                 <button onclick="guardar()">Guardar</button>
                 <button onclick="abrir()">Abrir</button>
+            </div>
+            <div class="editor-container">
+                <div  class="line-numbers" id="lineNumbers"></div>
+                <div class="container-code">
+                    <div id="codeText" class="codeText"></div>
+                    <textarea id="codeArea" placeholder="Escribe tu código aquí..." oninput="highlightText()"></textarea>
+                </div>
+                
+                
+            </div>
+            <!-- <div class="textarea-container">
+                <div id="highlightDiv" class="highlight"></div>
+                <textarea id="inputText" oninput="highlightText()"></textarea>
+            </div> -->
+            <div class="buttons">
+                <button onclick="lexico()">Análisis léxico</button>
+                <button onclick="sintaxis()">Análisis sintáctico</button>
+                <button onclick="semantico()">Análisis semántico</button>
+                <button onclick="compilar()">Compilar</button>
             </div>
             <br><br><br>
             <div class="error-panel">
@@ -76,7 +91,7 @@
     </div>
     <br><br><br>
 
-
+    <script src="./scripts/editor.js"></script>
     <script src="./scripts/buttons.js"></script>
 </body>
 
