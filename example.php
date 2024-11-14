@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor con resaltado de sintaxis</title>
+    <title>Resaltado de sintaxis</title>
     <style>
         .editor {
             width: 100%;
@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-<h2>Editor de código con resaltado de sintaxis</h2>
+<h2>Resaltado de sintaxis</h2>
 <div id="editor" class="editor" contenteditable="true"></div>
 
 <script>

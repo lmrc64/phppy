@@ -22,6 +22,7 @@ function compilar() {
     "fscan",
     "return",
     "this",
+      "int"
   ];
   //const regex = /\b(\w+)\b/g;
     const regex = /\b(\W{0,2}\w+)\b/g;
