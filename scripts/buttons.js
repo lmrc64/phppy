@@ -1,4 +1,42 @@
 
+const keywords = [
+  "if",
+  "elseif",
+  "else",
+  "while",
+  "for",
+  "break",
+  "echo",
+  "fscan",
+  "return",
+  "this",
+];
+
+const codeArea = document.getElementById("codeArea");
+const lineNumbers = document.getElementById("lineNumbers");
+
+// Actualiza los números de línea cuando el contenido del textarea cambia
+codeArea.addEventListener("input", function () {
+    const lines = codeArea.value.split('\n');
+    lineNumbers.innerHTML = ""; // Limpiar los números de línea previos
+
+    lines.forEach((_, index) => {
+        const lineNumber = document.createElement("div");
+        lineNumber.textContent = index + 1;
+        lineNumbers.appendChild(lineNumber);
+    });
+});
+
+function prueba(){
+  const lines = codeArea.value.split('\n');
+    lineNumbers.innerHTML = ""; // Limpiar los números de línea previos
+
+    lines.forEach((_, index) => {
+        const lineNumber = document.createElement("div");
+        lineNumber.textContent = index + 1;
+        lineNumbers.appendChild(lineNumber);
+    });
+}
 
 function compilar() {
   const code = document.getElementById("codeArea").value;
@@ -11,18 +49,7 @@ function compilar() {
 
   // Simulación de análisis de tokens (básico)
   const lines = code.split("\n");
-  const keywords = [
-    "if",
-    "elseif",
-    "else",
-    "while",
-    "for",
-    "break",
-    "echo",
-    "fscan",
-    "return",
-    "this",
-  ];
+  
   //const regex = /\b(\w+)\b/g;
     const regex = /\b(\W{0,2}\w+)\b/g;
 
@@ -47,6 +74,7 @@ function compilar() {
 
 function limpiar() {
   document.getElementById("codeArea").value = "";
+  document.getElementById("codeText").innerHTML = "";
   const tokenTable = document.getElementById("tokenTable");
   while (tokenTable.rows.length > 1) {
     tokenTable.deleteRow(1);
@@ -81,26 +109,16 @@ function abrir() {
     const reader = new FileReader();
     reader.onload = function (e) {
       document.getElementById("codeArea").value = e.target.result;
+      document.getElementById("codeText").innerHTML = e.target.result;
+      prueba();
+      highlightText();
     };
     reader.readAsText(file);
   };
   input.click();
 }
 
-const codeArea = document.getElementById("codeArea");
-const lineNumbers = document.getElementById("lineNumbers");
 
-// Actualiza los números de línea cuando el contenido del textarea cambia
-codeArea.addEventListener("input", function () {
-    const lines = codeArea.value.split('\n');
-    lineNumbers.innerHTML = ""; // Limpiar los números de línea previos
-
-    lines.forEach((_, index) => {
-        const lineNumber = document.createElement("div");
-        lineNumber.textContent = index + 1;
-        lineNumbers.appendChild(lineNumber);
-    });
-});
 
 window.onload = function () {
     const lines = codeArea.value.split('\n');
