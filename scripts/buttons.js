@@ -41,7 +41,7 @@ function prueba(){
 function compilar() {
   //Alfabeto permitido
   const alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9,'+','*','/','=','$','%','&','!','"','|','<','>','(',')','[',']','{','}',';','.',','," "];
-  const keywords = ["if", "elseif", "else", "while", "for", "break", "echo", "fscan", "return", "this"];
+
 
   //Solo el de arriba y yo abemos como funciona el automata y de donde salio cada cosas (chiste)
   const automata = [
@@ -93,7 +93,6 @@ function compilar() {
       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Letras*/,0,0,0,0,0,0,0,0,0,0/*Digitos*/,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Caracteres Especiales*/,0], //estado 45
       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Letras*/,0,0,0,0,0,0,0,0,0,0/*Digitos*/,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Caracteres Especiales*/,0], //estado 46
       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Letras*/,0,0,0,0,0,0,0,0,0,0/*Digitos*/,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Caracteres Especiales*/,0], //estado 47
-      [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,5/*Letras*/,5,5,5,5,5,5,5,5,5,7/*Digitos*/,7,7,7,8,7,7,7,1,7,7,7,7,7,7,7,7,7,7,7,8,7,7/*Caracteres Especiales*/,0]  //estado 47
       [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Letras*/,0,0,0,0,0,0,0,0,0,0/*Digitos*/,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0/*Caracteres Especiales*/,0] //estado 48
   ];
   let v_analizar = [];
@@ -114,16 +113,17 @@ v_analizar = Array.from(lines);
             v_estado = automata[v_estado][alfabeto.indexOf(p_caracter)];
         }
     }
-    if (v_estado == 6) {
-        while (v_cont2 < keywords.length) {
-            if (v_resultado == keywords[v_contador]) {
-                console.log(v_resultado + 'Es palabra reservada');
-            }else{
-                console.log(v_resultado + 'Es identificador');
-            }
-        }
-    } else if (v_estado == 7) {
-        console.log(v_resultado + 'Es valor numerico');
+    if (v_estado == 48) {
+            console.log(v_resultado + ' Es palabra reservada')
+
+    } else if (v_estado == 45) {
+        console.log(v_resultado + ' Es cadena');
+    }else if (v_estado ==  43 || v_estado == 42){
+        console.log(v_resultado + ' Es operador');
+    }else if (v_estado ==  44){
+        console.log(v_resultado + ' Es constante numerica');
+    }else if (v_estado ==  46){
+        console.log(v_resultado + ' Es identificador');
     }else{
         console.log(v_resultado + 'Es invalido');
     }
