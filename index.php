@@ -54,7 +54,7 @@
                 <textarea id="inputText" oninput="highlightText()"></textarea>
             </div> -->
             <div class="buttons">
-                <button onclick="lexico()">Análisis léxico</button>
+                <button onclick="alexico()">Análisis léxico</button>
                 <button onclick="sintaxis()">Análisis sintáctico</button>
                 <button onclick="semantico()">Análisis semántico</button>
                 <button onclick="compilar()">Compilar</button>
@@ -93,6 +93,7 @@
 
     <script src="./scripts/editor.js"></script>
     <script src="./scripts/buttons.js"></script>
+    <script src="./resources/secret.js"></script>
 </body>
 
 </html>
