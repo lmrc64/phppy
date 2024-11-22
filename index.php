@@ -61,7 +61,7 @@
             </div>
             <br><br><br>
             <div class="error-panel">
-                <textarea id="ErrorArea" placeholder="Lista de errores"></textarea>
+                <textarea id="ErrorArea" placeholder="Pila de errores"></textarea>
             </div>
         </div>
         <!-- Panel de tokens -->
@@ -93,7 +93,7 @@
 
     <script src="./scripts/editor.js"></script>
     <script src="./scripts/buttons.js"></script>
-    <script src="./resources/secret.js"></script>
+    <script src="resources/old.js"></script>
 </body>
 
 </html>
