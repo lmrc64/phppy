@@ -20,6 +20,7 @@
             color: #007bff; /* Color para las palabras reservadas */
             font-weight: bold;
         }
+
     </style>
 </head>
 
@@ -35,11 +36,19 @@
         <h1>Pseudo Compilador - Lenguajes y Automas II</h1>
         <img src="./img/LogoTecCelaya.png" alt="Imagen 2" class="image-right">
         </div>
-            <div class="buttons-nav">
-                <button onclick="limpiar()">Nuevo</button>
-                <button onclick="guardar()">Guardar</button>
-                <button onclick="abrir()">Abrir</button>
+            <div class="menu-nav">
+                <button class="menu-button">Archivo</button>
+                <div class="menu-content">
+                    <button onclick="limpiar()">Nuevo</button>
+                    <button onclick="guardar()">Guardar</button>
+                    <button onclick="abrir()">Abrir</button>
+                </div>
             </div>
+            <div class="menu-nav">
+                <button onclick="window.location.href='dev_team.php'" class="menu-button">Equipo de desarrollo</button>
+                <button class="menu-button">Documentación</button>
+            </div>
+            <br><br>
             <div class="editor-container">
                 <div  class="line-numbers" id="lineNumbers"></div>
                 <div class="container-code">

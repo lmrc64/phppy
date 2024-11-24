@@ -200,3 +200,57 @@ tbody td {
 .buttons button:hover {
   background-color: #d4c32a;
 }
+
+/**/
+.menu-nav {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-button {
+  background-color: #37353a; /* Fondo oscuro para el botón principal */
+  color: white; /* Texto blanco para contraste */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu-button:hover {
+  background-color: #d4c32a; /* Cambia el color al pasar el cursor */
+}
+
+.menu-content {
+  display: none;
+  position: absolute;
+  top: 100%; /* Para que aparezca justo debajo del botón */
+  left: 0;
+  background-color: white; /* Fondo blanco para contraste */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: 160px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.menu-content button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  background-color: white;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: black;
+}
+
+.menu-content button:hover {
+  background-color: #d3d3d3;
+}
+
+.menu-nav:hover .menu-content {
+  display: block;
+}
+
