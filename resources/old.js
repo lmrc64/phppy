@@ -1,6 +1,4 @@
 
-
-
 function alexico() {
     const code = document.getElementById("codeArea").value;
     const errorArea = document.getElementById("ErrorArea");
@@ -77,18 +75,18 @@ function alexico() {
             else if (groupSigns.includes(token)) tipo = "Delimitadores";
             else{
                 tipo = "No reconocido por el lenguaje";
-                let errorId;
+                let error;
                 if (!isNaN(token[0]) && ((token.split(".").length-1) > 1 || [...token].some(char => isNaN(char) && char !== '.')))
-                    errorId = 3
+                    error = "Error: Constante numérica invalida. Línea: " + (lineIndex + 1) + " Columna: " + (line.indexOf(token) + 1)
                 else if (token[0] === '"' && token[token.length-1] !== '"')
-                    errorId = 2
+                    error = "Error: Constante de texto invalida. Línea: " + (lineIndex + 1) + " Columna: " + (line.indexOf(token) + 1)
                 //else if (!isNaN(token[0]) && ((token.split(".").length-1) > 1 || [...token].some(char => isNaN(char) && char !== '.')))
                 else if (![...token].every(caracter => alfabeto.includes(caracter)))
-                    errorId = 0
+                    error = "Error: Caracter no permitido. Línea: " + (lineIndex + 1) + " Columna: " + (line.indexOf(token) + 1)
                 else
-                    errorId = 1
-                errorStack.pushError(errorId, lineIndex + 1, line.indexOf(token) + 1)
-                console.log(errorId)
+                    error = "Error: Nombre de identificador invalido. Línea: " + (lineIndex + 1) + " Columna: " + (line.indexOf(token) + 1)
+                errorStack.pushError(error, lineIndex + 1, line.indexOf(token) + 1)
+                //console.log(errorId)
             }
 
 
@@ -101,19 +99,103 @@ function alexico() {
             //Añadir a la TokenTable
             tablaSimbolos.addToken(tipo, token, lineIndex + 1, line.indexOf(token) + 1);
 
-            tablaSimbolos.readToken(1); // Leer el primer token
+            //tablaSimbolos.readToken(1); // Leer el primer token
             //tablaSimbolos.updateToken(1, "Identificador", "y", 1, 6);
             //tablaSimbolos.clear();
 
-            //Imprimir errores si existen
-            if(errorStack.stack.length > 0){
-                errorArea.value = errorStack.popAllErrors();
-            }
+
 
         })
 
     });
+    //Imprimir errores si existen
+    if(errorStack.stack.length > 0){
+        errorArea.value = errorStack.popAllErrors();
+    }
+
+    return { tablaSimbolos, errorStack };
 }
+
+function asintactico() {
+    const code = document.getElementById("codeArea").value;
+    const errorArea = document.getElementById("ErrorArea");
+    errorArea.value = "";
+    //const tokenTable = document.getElementById("tokenTable");
+
+    let { tablaSimbolos, errorStack } = alexico();
+
+    //console.log(tablaSimbolos)
+
+    errorStack = verificarBalanceo(code, errorStack)
+    //Imprimir errores si existen
+    if(errorStack.stack.length > 0){
+        errorArea.value = errorStack.popAllErrors();
+    }
+
+
+}
+
+function verificarBalanceo(codigo, errorStack) {
+    const stack = []; // Pila para almacenar los caracteres de apertura
+    const abren = ["(", "{"]; // Caracteres de apertura
+    const cierran = [")", "}"]; // Caracteres de cierre
+
+    const lines = codigo.split("\n"); // Separar el código en líneas
+
+    // Recorrer cada línea del código
+    for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+        const line = lines[lineNumber];
+
+        // Recorrer cada caracter de la línea
+        for (let colNumber = 0; colNumber < line.length; colNumber++) {
+            const char = line[colNumber];
+
+            if (abren.includes(char)) {
+                stack.push({ char, line: lineNumber + 1, column: colNumber + 1 }); // Almacenar la posición de apertura
+            } else if (cierran.includes(char)) {
+                // Verificar si la pila está vacía antes de hacer pop
+                if (stack.length === 0) {
+                    errorStack.pushError(`Balanceo incorrecto: Se encontró un '${char}' en la línea ${lineNumber + 1}, columna ${colNumber + 1}, pero no hay ningún paréntesis de apertura correspondiente.`, lineNumber + 1, colNumber + 1)
+                    return errorStack;
+                }
+
+                const ultimo = stack.pop();
+
+                // Si el último carácter de apertura no coincide con el carácter de cierre
+                if (abren.indexOf(ultimo.char) !== cierran.indexOf(char)) {
+                    errorStack.pushError(`Balanceo incorrecto: Se esperaba un '${abren[cierran.indexOf(char)]}' en la línea ${ultimo.line}, columna ${ultimo.column}. Pero se encontró un '${char}' en línea ${lineNumber + 1}, columna ${colNumber + 1}.`, 0, 0)
+                    return errorStack;
+                }
+            }
+        }
+    }
+
+    // Si la pila no está vacía, significa que faltan caracteres de cierre
+    if (stack.length > 0) {
+        const ultimo = stack[stack.length - 1];
+        errorStack.pushError(`Balanceo incorrecto: Falta un '${cierran[abren.indexOf(ultimo.char)]}' en la línea ${ultimo.line}, columna ${ultimo.column}.`, cierran[abren.indexOf(ultimo.char)], ultimo.column)
+        return errorStack;
+    }
+
+
+
+    return errorStack;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,16 +226,19 @@ class ErrorStack {
 
     popError(){
         const error = this.stack.pop();
-        return "Error: " + ErrorStack.errorTypes[error.error] + " Línea: " + error.line + " Columna: " + error.column;
+        return "Error: " + error.error + " Línea: " + error.line + " Columna: " + error.column;
     }
 
     popAllErrors(){
-        const errors = [];
+        let errors = "";
         while (this.stack.length > 0){
+
             const error = this.stack.pop();
-            errors.push("Error: " + ErrorStack.errorTypes[error.error] + " Línea: " + error.line + " Columna: " + error.column);
+            errors = error.error + "\n" +  errors;
+            //console.log(ErrorStack.errorTypes[error.error])
         }
-        return errors.join("\n")
+        console.log(errors)
+        return errors
     }
 
     clearStack() {
@@ -175,7 +260,7 @@ class TokenTable {
             id: ++this.id,
             token: token,
         });
-        console.log(`Token agregado: ID=${this.id}, Token=${JSON.stringify(token)}`);
+        //console.log(`Token agregado: ID=${this.id}, Token=${JSON.stringify(token)}`);
     }
 
     // Método para actualizar un token por ID

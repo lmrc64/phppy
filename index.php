@@ -64,13 +64,13 @@
             </div> -->
             <div class="buttons">
                 <button onclick="alexico()">Análisis léxico</button>
-                <button onclick="sintaxis()">Análisis sintáctico</button>
+                <button onclick="asintactico()">Análisis sintáctico</button>
                 <button onclick="semantico()">Análisis semántico</button>
                 <button onclick="compilar()">Compilar</button>
             </div>
             <br><br><br>
             <div class="error-panel">
-                <textarea id="ErrorArea" placeholder="Pila de errores"></textarea>
+                <textarea disabled id="ErrorArea" placeholder="Pila de errores"></textarea>
             </div>
         </div>
         <!-- Panel de tokens -->

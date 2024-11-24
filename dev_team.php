@@ -56,14 +56,14 @@
 <h1 style="text-align: center;">Development Team</h1>
 <div class="team-container">
     <div class="card">
-        <img src="padrino.jpg" alt="Member 1">
+        <img src="./resources/padrino.jpeg" alt="Member 1">
         <h3>Adrián Estrada Álvarez</h3>
-        <p>Front-End Developer</p>
+        <p>21030975</p>
     </div>
     <div class="card">
         <img src="./resources/barrera.jpeg" alt="Member 2">
         <h3>José Luis Barrera López</h3>
-        <p>Back-End Developer</p>
+        <p>21030020</p>
     </div>
     <div class="card">
         <img src="./resources/jon.jpeg" alt="Member 3">
