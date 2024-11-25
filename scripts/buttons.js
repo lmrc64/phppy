@@ -4,7 +4,7 @@ const keywords = [
   "elseif",
   "else",
   "while",
-  "for",
+  "foreach",
   "break",
   "echo",
   "fscan",

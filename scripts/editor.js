@@ -33,7 +33,7 @@
 //     sel.addRange(range);
 // }
 
-const regex = /\b(if|else|elseif|while|for|break|echo|fscan|return|this)\b/gi;
+const regex = /\b(if|else|elseif|while|foreach|break|echo|fscan|return|this|as)\b/gi;
 
 function highlightText() {
     const textarea = document.getElementById("codeArea");

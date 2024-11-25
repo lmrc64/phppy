@@ -20,12 +20,13 @@ function alexico() {
         "elseif",
         "else",
         "while",
-        "for",
+        "foreach",
         "break",
         "echo",
         "fscan",
         "return",
         "this",
+        "as"
     ];
 
     const operators = [
@@ -54,7 +55,7 @@ function alexico() {
         "}"
     ];
 
-    const alfabeto = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+', '*', '/', '=', '$', '%', '&', '!', '"', '|', '<', '>', '(', ')', '[', ']', '{', '}', ';', '.', ',', ' '];
+    const alfabeto = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '*', '/', '=', '$', '%', '&', '!', '"', '|', '<', '>', '(', ')', '[', ']', '{', '}', ';', '.', ',', ' '];
 
     //'+', '*', '/', '=', '$', '%', '&', '!', '"', '|', '<', '>', '(', ')', '[', ']', '{', '}', ';', '.', ',', ' '];
     //const regex = /\b(\w+)\b/g;
@@ -63,11 +64,12 @@ function alexico() {
     lines.forEach((line, lineIndex) => {
 
         const tokens = line.split(" ");
+        console.log(tokens)
 
         tokens.forEach((token)=>{
             let tipo;
 
-            if (token[0] === '$' && [...token].every(caracter => alfabeto.includes(caracter))) tipo = "Identificador";
+            if (token[0] === '$' && isNaN(token[1]) && [...token].every(caracter => alfabeto.includes(caracter))) tipo = "Identificador";
             else if (keywords.includes(token)) tipo = "Palabra Clave";
             else if (!isNaN(token)) tipo = "Constante numérica";
             else if (token[0] === '"' && token[token.length-1] === '"') tipo = "Constante de texto"
@@ -90,18 +92,24 @@ function alexico() {
             }
 
 
-            //Añadir al frontend
-            const newRow = tokenTable.insertRow();
-            newRow.insertCell(0).textContent = tipo;
-            newRow.insertCell(1).textContent = token;
-            newRow.insertCell(2).textContent = `${lineIndex + 1}, ${line.indexOf(token) + 1}`;
 
-            //Añadir a la TokenTable
-            tablaSimbolos.addToken(tipo, token, lineIndex + 1, line.indexOf(token) + 1);
 
-            //tablaSimbolos.readToken(1); // Leer el primer token
-            //tablaSimbolos.updateToken(1, "Identificador", "y", 1, 6);
-            //tablaSimbolos.clear();
+            if (token !== ''){
+                //Añadir al frontend
+                const newRow = tokenTable.insertRow();
+                newRow.insertCell(0).textContent = tipo;
+                newRow.insertCell(1).textContent = token;
+                newRow.insertCell(2).textContent = `${lineIndex + 1}, ${line.indexOf(token) + 1}`;
+
+                //Añadir a la TokenTable
+                tablaSimbolos.addToken(tipo, token, lineIndex + 1, line.indexOf(token) + 1);
+
+                //tablaSimbolos.readToken(1); // Leer el primer token
+                //tablaSimbolos.updateToken(1, "Identificador", "y", 1, 6);
+                //tablaSimbolos.clear();
+            }
+
+
 
 
 
