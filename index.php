@@ -62,7 +62,9 @@
                 <div id="highlightDiv" class="highlight"></div>
                 <textarea id="inputText" oninput="highlightText()"></textarea>
             </div> -->
+
             <div class="buttons">
+
                 <button onclick="alexico()">Análisis léxico</button>
                 <button onclick="asintactico()">Análisis sintáctico</button>
                 <button onclick="semantico()">Análisis semántico</button>
@@ -100,8 +102,8 @@
     </div>
     <br><br><br>
 
-    <script src="./scripts/editor.js"></script>
-    <script src="./scripts/buttons.js"></script>
+    <script src="scripts/editor.js"></script>
+    <script src="scripts/buttons.js"></script>
     <script src="resources/old.js"></script>
 </body>
 

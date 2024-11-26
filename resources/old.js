@@ -1,4 +1,5 @@
 
+
 function alexico() {
     const code = document.getElementById("codeArea").value;
     const errorArea = document.getElementById("ErrorArea");
@@ -55,7 +56,7 @@ function alexico() {
         "}"
     ];
 
-    const alfabeto = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '*', '/', '=', '$', '%', '&', '!', '"', '|', '<', '>', '(', ')', '[', ']', '{', '}', ';', '.', ',', ' '];
+    const alfabeto = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '*', '/', '=', '$', '%', '&', '!', '"', '|', '<', '>', '(', ')', '[', ']', '{', '}', '.', ',', ' '];
 
     //'+', '*', '/', '=', '$', '%', '&', '!', '"', '|', '<', '>', '(', ')', '[', ']', '{', '}', ';', '.', ',', ' '];
     //const regex = /\b(\w+)\b/g;
@@ -135,6 +136,14 @@ function asintactico() {
     //console.log(tablaSimbolos)
 
     errorStack = verificarBalanceo(code, errorStack)
+
+    //Implementaci[on G4
+
+
+
+    //Fin G4
+
+
     //Imprimir errores si existen
     if(errorStack.stack.length > 0){
         errorArea.value = errorStack.popAllErrors();
@@ -142,6 +151,15 @@ function asintactico() {
 
 
 }
+
+
+
+
+
+
+
+
+
 
 function verificarBalanceo(codigo, errorStack) {
     const stack = []; // Pila para almacenar los caracteres de apertura
